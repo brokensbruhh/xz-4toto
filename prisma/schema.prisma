@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String
+  amount    String
+  currency  String
+  category  String
+  note      String?
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, date])
+  @@index([userId, category])
+}
+
+model WatchlistItem {
+  id     String @id @default(cuid())
+  userId String
+  coinId String
+  symbol String
+  name   String
+
+  @@unique([userId, coinId])
+}
+
+model Budget {
+  id        String   @id @default(cuid())
+  userId    String
+  category  String
+  limit     String
+  currency  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, category])
+}
+
+model ExchangeRate {
+  id        String   @id @default(cuid())
+  userId    String
+  base      String
+  quote     String
+  rate      String
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, base, quote])
+}
