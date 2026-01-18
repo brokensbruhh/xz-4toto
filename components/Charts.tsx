@@ -113,28 +113,50 @@ export default function Charts({ pieData, lineData, from, to }: ChartsProps) {
 
   return (
     <section className="grid gap-6 lg:grid-cols-3">
-      <div className="rounded-2xl bg-white p-6 shadow-sm lg:col-span-2">
+      <div className="card p-6 lg:col-span-2">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-slate-900">
+          <h2 className="text-lg font-semibold text-slate-50">
             Income vs expense
           </h2>
           <button
             onClick={exportPdf}
-            className="rounded-lg border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 hover:border-brand-400 hover:text-brand-600"
+            className="rounded-lg border border-slate-700 px-3 py-1 text-xs font-semibold text-slate-300 hover:border-emerald-400/60 hover:text-emerald-300"
           >
             Export PDF
           </button>
         </div>
         <div className="mt-4 h-72">
-          <Line data={line} options={{ maintainAspectRatio: false }} />
+          <Line
+            data={line}
+            options={{
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  labels: { color: "#e2e8f0" },
+                },
+              },
+              scales: {
+                x: { ticks: { color: "#94a3b8" }, grid: { color: "#1e293b" } },
+                y: { ticks: { color: "#94a3b8" }, grid: { color: "#1e293b" } },
+              },
+            }}
+          />
         </div>
       </div>
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-slate-900">
+      <div className="card p-6">
+        <h2 className="text-lg font-semibold text-slate-50">
           Spending by category
         </h2>
         <div className="mt-4 h-72">
-          <Pie data={pie} options={{ maintainAspectRatio: false }} />
+          <Pie
+            data={pie}
+            options={{
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { labels: { color: "#e2e8f0" } },
+              },
+            }}
+          />
         </div>
       </div>
     </section>

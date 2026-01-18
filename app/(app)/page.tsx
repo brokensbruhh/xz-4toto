@@ -72,29 +72,29 @@ export default async function DashboardPage({
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-white p-6 shadow-sm">
+      <header className="card flex flex-wrap items-center justify-between gap-4 p-6">
         <div>
-          <p className="text-sm text-slate-500">Selected period</p>
-          <h1 className="text-2xl font-semibold text-slate-900">
+          <p className="text-sm text-slate-400">Selected period</p>
+          <h1 className="text-2xl font-semibold text-slate-50">
             {toISODate(from)} → {toISODate(to)}
           </h1>
         </div>
         <div className="flex items-center gap-6">
           <div className="text-right">
-            <p className="text-xs uppercase text-slate-400">Income</p>
-            <p className="text-lg font-semibold text-emerald-600">
+            <p className="text-xs uppercase text-slate-500">Income</p>
+            <p className="text-lg font-semibold text-emerald-300">
               {totals.income.toFixed(2)}
             </p>
           </div>
           <div className="text-right">
-            <p className="text-xs uppercase text-slate-400">Expense</p>
-            <p className="text-lg font-semibold text-rose-500">
+            <p className="text-xs uppercase text-slate-500">Expense</p>
+            <p className="text-lg font-semibold text-rose-300">
               {totals.expense.toFixed(2)}
             </p>
           </div>
           <div className="text-right">
-            <p className="text-xs uppercase text-slate-400">Balance</p>
-            <p className="text-lg font-semibold text-slate-900">
+            <p className="text-xs uppercase text-slate-500">Balance</p>
+            <p className="text-lg font-semibold text-slate-100">
               {(totals.income - totals.expense).toFixed(2)}
             </p>
           </div>
@@ -109,16 +109,16 @@ export default async function DashboardPage({
       />
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-slate-900">
+        <div className="card p-6">
+          <h2 className="text-lg font-semibold text-slate-50">
             Category budgets
           </h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-400">
             Track progress against each budget.
           </p>
           <div className="mt-4 space-y-4">
             {budgets.length === 0 ? (
-              <p className="text-sm text-slate-400">No budgets yet.</p>
+              <p className="text-sm text-slate-500">No budgets yet.</p>
             ) : (
               budgets.map((budget) => {
                 const spent = transactions
@@ -134,24 +134,24 @@ export default async function DashboardPage({
                 return (
                   <div
                     key={budget.id}
-                    className="rounded-xl border border-slate-100 p-4"
+                    className="rounded-xl border border-slate-800/70 bg-slate-900/50 p-4"
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-slate-800">
+                        <p className="text-sm font-medium text-slate-200">
                           {budget.category}
                         </p>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-slate-500">
                           Limit {budget.limit} {budget.currency}
                         </p>
                       </div>
-                      <p className="text-sm font-semibold text-slate-700">
+                      <p className="text-sm font-semibold text-slate-200">
                         {spent.toFixed(2)}
                       </p>
                     </div>
-                    <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                    <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-800/70">
                       <div
-                        className="h-full rounded-full bg-brand-500"
+                        className="h-full rounded-full bg-emerald-400"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -161,18 +161,18 @@ export default async function DashboardPage({
             )}
           </div>
         </div>
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-slate-900">
+        <div className="card p-6">
+          <h2 className="text-lg font-semibold text-slate-50">
             FX rate
           </h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-400">
             Manual USD/KZT rate for conversions.
           </p>
           <div className="mt-4 space-y-2 text-sm">
-            <p className="text-slate-700">
+            <p className="text-slate-200">
               Current rate: 1 USD = {rate?.rate ?? "—"} KZT
             </p>
-            <p className="text-slate-400">
+            <p className="text-slate-500">
               Update it in the Transactions page.
             </p>
           </div>

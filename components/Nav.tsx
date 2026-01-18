@@ -21,9 +21,9 @@ export default function Nav() {
 
   return (
     <aside className="w-60 shrink-0">
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-slate-900">Finance</h2>
-        <p className="text-xs text-slate-400">Tracker & Crypto</p>
+      <div className="card p-6">
+        <h2 className="text-lg font-semibold text-slate-50">Finance</h2>
+        <p className="text-xs text-slate-500">Tracker & Crypto</p>
         <nav className="mt-6 space-y-2">
           {navItems.map((item) => {
             const active = pathname === item.href;
@@ -33,8 +33,8 @@ export default function Nav() {
                 href={item.href}
                 className={`block rounded-lg px-3 py-2 text-sm font-medium transition ${
                   active
-                    ? "bg-brand-50 text-brand-600"
-                    : "text-slate-600 hover:bg-slate-50"
+                    ? "bg-emerald-500/15 text-emerald-300"
+                    : "text-slate-300 hover:bg-slate-800/70"
                 }`}
               >
                 {item.label}
@@ -44,7 +44,7 @@ export default function Nav() {
         </nav>
         <button
           onClick={logout}
-          className="mt-8 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:border-rose-300 hover:text-rose-500"
+          className="mt-8 w-full rounded-lg border border-slate-700 px-3 py-2 text-sm font-semibold text-slate-300 hover:border-rose-400/60 hover:text-rose-300"
         >
           Log out
         </button>

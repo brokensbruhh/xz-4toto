@@ -175,16 +175,16 @@ export default function TransactionsPage() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-900">
+          <h1 className="text-2xl font-semibold text-slate-50">
             Transactions
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-400">
             Filter, import, and manage your cash flow.
           </p>
         </div>
         <Link
           href="/transactions/new"
-          className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600"
+          className="rounded-lg bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-400"
         >
           Add transaction
         </Link>
@@ -192,10 +192,10 @@ export default function TransactionsPage() {
 
       <form
         onSubmit={handleFiltersSubmit}
-        className="grid gap-4 rounded-2xl bg-white p-6 shadow-sm md:grid-cols-4"
+        className="card grid gap-4 p-6 md:grid-cols-4"
       >
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">From</label>
+          <label className="text-sm font-medium text-slate-300">From</label>
           <input
             type="date"
             value={filters.from}
@@ -205,7 +205,7 @@ export default function TransactionsPage() {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">To</label>
+          <label className="text-sm font-medium text-slate-300">To</label>
           <input
             type="date"
             value={filters.to}
@@ -215,7 +215,7 @@ export default function TransactionsPage() {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">Type</label>
+          <label className="text-sm font-medium text-slate-300">Type</label>
           <select
             value={filters.type}
             onChange={(event) =>
@@ -228,7 +228,7 @@ export default function TransactionsPage() {
           </select>
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">Category</label>
+          <label className="text-sm font-medium text-slate-300">Category</label>
           <input
             value={filters.category}
             onChange={(event) =>
@@ -240,36 +240,36 @@ export default function TransactionsPage() {
         <div className="md:col-span-4 flex flex-wrap items-center gap-3">
           <button
             type="submit"
-            className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+            className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-white"
           >
             Apply filters
           </button>
           <button
             type="button"
-            className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600"
+            className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-300"
             onClick={() => setFilters(emptyFilters)}
           >
             Reset
           </button>
-          <label className="text-sm font-medium text-slate-600">
+          <label className="text-sm font-medium text-slate-300">
             CSV Import
             <input
               type="file"
               accept=".csv"
-              className="mt-2 block text-sm"
+              className="mt-2 block text-sm text-slate-400"
               onChange={handleCsvUpload}
             />
           </label>
-          {message ? <p className="text-sm text-slate-500">{message}</p> : null}
+          {message ? <p className="text-sm text-slate-400">{message}</p> : null}
         </div>
       </form>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <div className="rounded-2xl bg-white p-6 shadow-sm lg:col-span-2">
-          <h2 className="text-lg font-semibold text-slate-900">
+        <div className="card p-6 lg:col-span-2">
+          <h2 className="text-lg font-semibold text-slate-50">
             All transactions
           </h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-400">
             {loading ? "Loading..." : `${items.length} items`}
           </p>
           <div className="mt-4">
@@ -277,11 +277,11 @@ export default function TransactionsPage() {
           </div>
         </div>
         <div className="space-y-6">
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900">
+          <div className="card p-6">
+            <h3 className="text-lg font-semibold text-slate-50">
               Manual FX rate
             </h3>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-slate-400">
               Set USD/KZT conversion for reporting.
             </p>
             <form onSubmit={handleRateSubmit} className="mt-4 space-y-3">
@@ -298,17 +298,17 @@ export default function TransactionsPage() {
               />
               <button
                 type="submit"
-                className="w-full rounded-lg bg-brand-500 px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600"
+                className="w-full rounded-lg bg-emerald-500/90 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-400"
               >
                 Save rate
               </button>
             </form>
-            <p className="mt-3 text-xs text-slate-400">
+            <p className="mt-3 text-xs text-slate-500">
               Converted preview shown below.
             </p>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900">Budgets</h3>
+          <div className="card p-6">
+            <h3 className="text-lg font-semibold text-slate-50">Budgets</h3>
             <form onSubmit={handleBudgetSubmit} className="mt-4 space-y-3">
               <input
                 value={budgetForm.category}
@@ -335,31 +335,31 @@ export default function TransactionsPage() {
               </select>
               <button
                 type="submit"
-                className="w-full rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+                className="w-full rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-white"
               >
                 Save budget
               </button>
             </form>
             <div className="mt-4 space-y-2">
               {budgets.length === 0 ? (
-                <p className="text-sm text-slate-400">No budgets yet.</p>
+                <p className="text-sm text-slate-500">No budgets yet.</p>
               ) : (
                 budgets.map((budget) => (
                   <div
                     key={budget.id}
-                    className="flex items-center justify-between rounded-lg border border-slate-100 px-3 py-2 text-sm"
+                    className="flex items-center justify-between rounded-lg border border-slate-800/70 px-3 py-2 text-sm text-slate-200"
                   >
                     <div>
-                      <p className="font-medium text-slate-700">
+                      <p className="font-medium text-slate-200">
                         {budget.category}
                       </p>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-500">
                         {budget.limit} {budget.currency}
                       </p>
                     </div>
                     <button
                       onClick={() => deleteBudget(budget.id)}
-                      className="text-xs font-semibold text-rose-500"
+                      className="text-xs font-semibold text-rose-300"
                     >
                       Remove
                     </button>
@@ -368,14 +368,14 @@ export default function TransactionsPage() {
               )}
             </div>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900">
+          <div className="card p-6">
+            <h3 className="text-lg font-semibold text-slate-50">
               USD preview
             </h3>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-slate-400">
               Converted amounts using the manual rate.
             </p>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-4 space-y-2 text-sm text-slate-200">
               {converted.slice(0, 5).map((item) => (
                 <li key={item.id} className="flex justify-between">
                   <span>{item.category}</span>
@@ -385,7 +385,7 @@ export default function TransactionsPage() {
                 </li>
               ))}
               {converted.length === 0 ? (
-                <li className="text-slate-400">No data yet.</li>
+                <li className="text-slate-500">No data yet.</li>
               ) : null}
             </ul>
           </div>

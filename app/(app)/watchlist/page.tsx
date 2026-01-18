@@ -88,20 +88,20 @@ export default function WatchlistPage() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-semibold text-slate-900">
+        <h1 className="text-2xl font-semibold text-slate-50">
           Crypto watchlist
         </h1>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-400">
           Track live prices with CoinGecko.
         </p>
       </header>
 
       <form
         onSubmit={addItem}
-        className="grid gap-4 rounded-2xl bg-white p-6 shadow-sm md:grid-cols-3"
+        className="card grid gap-4 p-6 md:grid-cols-3"
       >
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">Coin ID</label>
+          <label className="text-sm font-medium text-slate-300">Coin ID</label>
           <input
             value={form.coinId}
             onChange={(event) =>
@@ -111,7 +111,7 @@ export default function WatchlistPage() {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">Symbol</label>
+          <label className="text-sm font-medium text-slate-300">Symbol</label>
           <input
             value={form.symbol}
             onChange={(event) =>
@@ -121,7 +121,7 @@ export default function WatchlistPage() {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-600">Name</label>
+          <label className="text-sm font-medium text-slate-300">Name</label>
           <input
             value={form.name}
             onChange={(event) =>
@@ -133,12 +133,12 @@ export default function WatchlistPage() {
         <div className="md:col-span-3">
           <button
             type="submit"
-            className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600"
+            className="rounded-lg bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-400"
           >
             Add to watchlist
           </button>
           {loading ? (
-            <span className="ml-3 text-sm text-slate-400">Loading...</span>
+            <span className="ml-3 text-sm text-slate-500">Loading...</span>
           ) : null}
         </div>
       </form>
