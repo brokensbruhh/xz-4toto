@@ -6,14 +6,20 @@ type CryptoItem = {
   symbol: string;
   price: number | null;
   change24h: number | null;
+  coinId?: string;
 };
 
 type CryptoTableProps = {
   items: CryptoItem[];
   onRemove: (id: string) => Promise<void>;
+  onExplain?: (coinId: string) => void;
 };
 
-export default function CryptoTable({ items, onRemove }: CryptoTableProps) {
+export default function CryptoTable({
+  items,
+  onRemove,
+  onExplain,
+}: CryptoTableProps) {
   return (
     <div className="card overflow-hidden">
       <table className="min-w-full text-sm">
@@ -55,12 +61,22 @@ export default function CryptoTable({ items, onRemove }: CryptoTableProps) {
                     : "—"}
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <button
-                    onClick={() => onRemove(item.id)}
-                    className="rounded-md border border-rose-500/40 px-3 py-1 text-xs font-semibold text-rose-300 hover:bg-rose-500/10"
-                  >
-                    Remove
-                  </button>
+                  <div className="flex justify-end gap-2">
+                    {onExplain && item.coinId ? (
+                      <button
+                        onClick={() => onExplain(item.coinId ?? "")}
+                        className="rounded-md border border-slate-700 px-3 py-1 text-xs font-semibold text-slate-300 hover:border-emerald-400/60 hover:text-emerald-300"
+                      >
+                        Explain last 7d move
+                      </button>
+                    ) : null}
+                    <button
+                      onClick={() => onRemove(item.id)}
+                      className="rounded-md border border-rose-500/40 px-3 py-1 text-xs font-semibold text-rose-300 hover:bg-rose-500/10"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))

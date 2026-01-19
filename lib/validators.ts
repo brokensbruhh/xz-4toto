@@ -35,3 +35,33 @@ export const RateInput = z.object({
     .string()
     .regex(/^\d+(\.\d{1,4})?$/, "Rate must be a number with up to 4 decimals"),
 });
+
+export const HoldingInput = z.object({
+  coinId: z.string().min(1),
+  symbol: z.string().min(1).max(20),
+  name: z.string().min(1).max(80),
+  amount: z
+    .string()
+    .regex(/^\d+(\.\d{1,8})?$/, "Amount must be a number with up to 8 decimals"),
+});
+
+export const HoldingUpdateInput = z.object({
+  id: z.string().min(1),
+  amount: z
+    .string()
+    .regex(/^\d+(\.\d{1,8})?$/, "Amount must be a number with up to 8 decimals"),
+});
+
+export const PortfolioSummaryQuery = z.object({
+  from: z.string().optional(),
+  to: z.string().optional(),
+});
+
+export const ExplainMoveQuery = z.object({
+  coinId: z.string().min(1),
+  days: z.string().optional(),
+});
+
+export const SearchQuery = z.object({
+  q: z.string().min(1),
+});

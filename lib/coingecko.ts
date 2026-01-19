@@ -6,8 +6,27 @@ export type CoinPrice = {
   price_change_percentage_24h: number | null;
 };
 
+type CacheEntry = {
+  expiresAt: number;
+  data: CoinPrice[];
+};
+
+const marketCache = new Map<string, CacheEntry>();
+const CACHE_TTL_MS = 60_000;
+
+function cacheKey(ids: string[]) {
+  return ids.slice().sort().join(",");
+}
+
 export async function fetchCoinPrices(ids: string[]): Promise<CoinPrice[]> {
   if (ids.length === 0) return [];
+  const key = cacheKey(ids);
+  const cached = marketCache.get(key);
+  const now = Date.now();
+
+  if (cached && cached.expiresAt > now) {
+    return cached.data;
+  }
 
   const url = new URL("https://api.coingecko.com/api/v3/coins/markets");
   url.searchParams.set("vs_currency", "usd");
@@ -19,5 +38,7 @@ export async function fetchCoinPrices(ids: string[]): Promise<CoinPrice[]> {
 
   const res = await fetch(url.toString(), { next: { revalidate: 30 } });
   if (!res.ok) throw new Error("Failed to fetch CoinGecko prices");
-  return res.json();
+  const data = (await res.json()) as CoinPrice[];
+  marketCache.set(key, { data, expiresAt: now + CACHE_TTL_MS });
+  return data;
 }

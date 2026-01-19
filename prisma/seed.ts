@@ -33,7 +33,7 @@ async function main() {
         category: "Rent",
         note: "Apartment",
         date: new Date(),
-      }
+      },
     ],
   });
 
@@ -42,6 +42,26 @@ async function main() {
       { userId, coinId: "bitcoin", symbol: "BTC", name: "Bitcoin" },
       { userId, coinId: "ethereum", symbol: "ETH", name: "Ethereum" },
       { userId, coinId: "solana", symbol: "SOL", name: "Solana" },
+    ],
+    skipDuplicates: true,
+  });
+
+  await prisma.holding.createMany({
+    data: [
+      {
+        userId,
+        coinId: "bitcoin",
+        symbol: "BTC",
+        name: "Bitcoin",
+        amount: "0.42",
+      },
+      {
+        userId,
+        coinId: "ethereum",
+        symbol: "ETH",
+        name: "Ethereum",
+        amount: "8.5",
+      },
     ],
     skipDuplicates: true,
   });

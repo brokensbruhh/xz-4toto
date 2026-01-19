@@ -55,3 +55,16 @@ model ExchangeRate {
 
   @@unique([userId, base, quote])
 }
+
+model Holding {
+  id        String   @id @default(cuid())
+  userId    String
+  coinId    String
+  symbol    String
+  name      String
+  amount    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, coinId])
+}
